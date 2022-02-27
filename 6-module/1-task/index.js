@@ -14,17 +14,17 @@
  */
 export default class UserTable {
   constructor(rows) {
-    this.elem = document.createElement('table');
+    this.table = document.createElement('table');
 
-    this.elem.insertAdjacentHTML('afterBegin', '<thead><tr><th>Имя</th><th>Возраст</th><th>Зарплата</th><th>Город</th><th></th></tr></thead>');
+    this.table.insertAdjacentHTML('afterBegin', '<thead><tr><th>Имя</th><th>Возраст</th><th>Зарплата</th><th>Город</th><th></th></tr></thead>');
 
-    const tBody = this.elem.createTBody();
+    const tBody = this.table.createTBody();
     
     for (const row of rows) {
       tBody.insertAdjacentHTML('beforeEnd', `<tr><td>${row.name}</td><td>${row.age}</td><td>${row.salary}</td><td>${row.city}</td><td><button> X </button></td></tr>`);
     }
 
-    this.elem.addEventListener('click', this.onClick);
+    this.table.addEventListener('click', this.onClick);
 
   }
 
@@ -34,5 +34,9 @@ export default class UserTable {
     if (event.target.matches('button')) {
       row.remove();
     }
+  }
+
+  get elem() {
+    return this.table
   }
 }
